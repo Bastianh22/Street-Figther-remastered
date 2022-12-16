@@ -224,16 +224,18 @@ function animate() {
   player1.velocity.x = 0;
   player2.velocity.x = 0;
 
+  // controle cadre player1
   if (player1.position.x < 0) {
     player1.position.x = 0;
-  } else if (player1.position.x > 980) {
-    player1.position.x = 980
+  } else if (player1.position.x > 970) {
+    player1.position.x = 970
   }
 
+  // controle cadre player2
   if (player2.position.x < 10) {
     player2.position.x = 10;
-  } else if (player2.position.x > 980) {
-    player2.position.x = 980;
+  } else if (player2.position.x > 970) {
+    player2.position.x = 970;
   }
 
 
