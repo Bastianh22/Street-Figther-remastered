@@ -7,11 +7,15 @@
   font-family: 'Press Start 2P', cursive;
 }
 
+body {
+  background: black;
+}
+
 .game {
   position: relative;
   display: inline-block;
+  margin: 10vmin 40vmin;
 }
-
 
 .header {
   position: absolute;

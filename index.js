@@ -4,6 +4,7 @@ const c = canvas.getContext('2d');
 canvas.width = 1024
 canvas.height = 576
 
+
 c.fillRect(0, 0, canvas.width, canvas.height)
 
 const gravity = 0.7
@@ -184,10 +185,13 @@ function determineWinner({ player1, player2 }) {
   document.querySelector('#timeout').style.display = 'flex'
   if (player1.health === player2.health) {
     document.querySelector('#timeout').innerHTML = 'Time Out'
+    player1.game = true
   } else if (player1.health > player2.health) {
     document.querySelector('#timeout').innerHTML = 'Player 1 win'
+    player2.game = true
   } else if (player1.health < player2.health) {
     document.querySelector('#timeout').innerHTML = 'Player 2 win'
+    player1.game = true
   }
 }
 
@@ -219,6 +223,20 @@ function animate() {
 
   player1.velocity.x = 0;
   player2.velocity.x = 0;
+
+  if (player1.position.x < 0) {
+    player1.position.x = 0;
+  } else if (player1.position.x > 980) {
+    player1.position.x = 980
+  }
+
+  if (player2.position.x < 10) {
+    player2.position.x = 10;
+  } else if (player2.position.x > 980) {
+    player2.position.x = 980;
+  }
+
+
 
   // player1 movement
   player1.switchSprite('idle')
@@ -267,7 +285,7 @@ function animate() {
 
     player2.takeHit()
     player1.isAttacking = false;
-    
+
     gsap.to('#player2Health', {
       width: player2.health + '%'
     })
@@ -305,6 +323,7 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) => {
+
   if (!player1.dead) {
     switch (event.key) {
       // touche du player1
@@ -344,7 +363,6 @@ window.addEventListener('keydown', (event) => {
         break;
     }
   }
-
 })
 
 window.addEventListener('keyup', (event) => {
